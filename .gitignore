@@ -1,0 +1,5 @@
+.DS_Store
+dump.rdb
+aresmush/
+ares-webportal/
+redis_6379.pid
