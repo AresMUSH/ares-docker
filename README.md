@@ -73,3 +73,5 @@ After initial setup, here are the commands you'll want to use whenever you want 
 ```
 
 You should now be able to connect to your game on localhost:4201 and connect to the web portal at http://localhost:4200.
+
+> Note: Use the game's `shutdown` command before stopping the container, to ensure the database has a chance to save all your latest changes.
