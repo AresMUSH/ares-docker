@@ -3,14 +3,10 @@ version: "3.7"
 services:
   game:
     image: aresmush:latest
-#    command: sh -c "yarn install && yarn run dev"
-#    ports:
-#      - 3000:3000
     working_dir: /ares
     volumes:
       - ${PWD}:/ares
     user: ares
-    #network_mode: host
     ports:
       - 4200:4200
       - 4201:4201
@@ -18,17 +14,3 @@ services:
       - 4203:4203
     tty: true
     command: redis-server /ares/data/redis.conf
-
-#  db:
-#    image: redis:6.2.4
-#    volumes:
-#      - ${PWD}/data:/data
-#    ports:
-#      - 6379:6379
-    #command: redis-server /data/redis.conf --appendonly yes 
-#    command: /bin/bash -l
-
-  #web:
-  #  image: danlynn/ember-cli:3.26.1
-  #  volumes:
-  #  command: /bin/bash -lc "/myapp/bin/devportal"

@@ -100,7 +100,6 @@ RUN apt-get install -y autoconf automake bison libffi-dev libgdbm-dev libncurses
 USER ares
 SHELL ["/bin/bash", "-lic"]
 
-# gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 
@@ -132,11 +131,3 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | b
     && nvm install 12 \
     && nvm use 12 \
     && npm install -g ember-cli
-#RUN source "/home/ares/.nvm/nvm.sh" & nvm install 12
-
-#RUN /bin/bash -lc "source /home/ares/.nvm/nvm.sh"
-#RUN /bin/bash -lc "nvm install 12"
-#RUN /bin/bash -lc "nvm use 12"
-#RUN /bin/bash -lc "npm install -g ember-cli"
-
-#CMD ['bundle', 'exec rake startares[disableproxy']
