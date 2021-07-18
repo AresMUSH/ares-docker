@@ -14,9 +14,9 @@ To set up the container for the first time:
   
 ```
     ares-docker
-      - data
       - aresmush
       - ares-webportal
+      - data
 ```
 
 4. Copy the `aresmush/install/game.distr` directory to create a new folder `aresmush/game`.
@@ -48,7 +48,7 @@ To set up the container for the first time:
 
 After initial setup, here are the commands you'll want to use whenever you want to run the game.
 
-> Note: If you still have the ares container shell running from the initial setup, you can skip steps 1 & 2.
+> Note: If you still have the ares container running from the initial setup, you can skip step 1.
 
 1. Start the container and database:
  
