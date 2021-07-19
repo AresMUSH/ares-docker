@@ -5,12 +5,17 @@ services:
     image: lynnfaraday/aresmush:latest
     working_dir: /ares
     volumes:
-      - ${PWD}:/ares
+      - ./:/ares
+      - node_modules:/ares/ares-webportal/node_modules
     user: ares
     ports:
       - 4200:4200
       - 4201:4201
       - 4202:4202
       - 4203:4203
+      - 7020:7020
+      - 7357:7357
     tty: true
     command: redis-server /ares/data/redis.conf
+volumes:
+  node_modules:

@@ -95,6 +95,16 @@ RUN apt-get -y update
 RUN apt-get install -y autoconf automake bison libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool libyaml-dev pkg-config sqlite3 zlib1g-dev libreadline-dev libssl-dev curl gawk
 
 # #########################################################################################
+# Set up placeholder volumes
+
+RUN mkdir /ares
+RUN mkdir /ares/aresmush
+RUN mkdir /ares/ares-webportal
+RUN mkdir /ares/ares-webportal/node_modules
+
+RUN chown -R ares /ares
+
+# #########################################################################################
 # Install RVM."
 
 USER ares
