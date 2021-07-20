@@ -8,9 +8,9 @@ To set up the container for the first time:
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
-2. Clone this repo to your local PC/Mac.
+2. Clone this repo to your local PC/Mac. You can use [GitHub Desktop](https://desktop.github.com/) or any other GitHub tool.
 
-3. In the working directory for the ares-docker repo, clone the aresmush and ares-webportal code repos. Your directory should now look like this:
+3. Clone the aresmush and ares-webportal code repos INTO the ares-docker directory. Your directory should now look like this:
   
 ```
     ares-docker
