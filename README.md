@@ -27,8 +27,6 @@ To set up the container for the first time:
     docker-compose up
 ```
 
-> **Note:** If you get an error about PWD not being defined, you will need to make a `.env` file in the ares-docker directory which defines the working directory. For example:  `PWD=/Users/YOU/Documents/ares-docker`
-
 6. Launch a shell connected to the container:
  
 ```
