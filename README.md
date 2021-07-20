@@ -27,6 +27,8 @@ To set up the container for the first time:
     docker-compose up
 ```
 
+> **Note:** If you get an error about PWD not being defined, you will need to make a `.env` file in the ares-docker directory which defines the working directory. For example:  `PWD=/Users/YOU/Documents/ares-docker`
+
 6. Launch a shell connected to the container:
  
 ```
@@ -38,7 +40,7 @@ To set up the container for the first time:
 ```
     cd aresmush
     bin/configure
-      - Use 0.0.0.0 for the host
+      - Use 127.0.0.1 for the host
       - Use default ports (this setup will not work with different ports)
       - Ignore the warning about the web portal directory not being found - that's OK.
     bin/wipedb
@@ -74,4 +76,10 @@ After initial setup, here are the commands you'll want to use whenever you want 
 
 You should now be able to connect to your game on localhost:4201 and connect to the web portal at http://localhost:4200.
 
-> Note: Use the game's `shutdown` command before stopping the container, to ensure the database has a chance to save all your latest changes.
+> Note: If you have trouble connecting, try setting the `bind_address` field in `server.yml` to "0.0.0.0" and then restart the game.
+
+# Database
+
+Your database will be saved in `data/dump.rdb`.
+
+The database saves every few minutes. If you want to ensure it's saved before stopping the container, just use the `db/save` command.
