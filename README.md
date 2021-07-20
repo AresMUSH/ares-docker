@@ -27,6 +27,8 @@ To set up the container for the first time:
     docker-compose up
 ```
 
+> Note: All commands can be run in Windows PowerShell or Mac Terminal.
+
 6. Launch a shell connected to the container:
  
 ```
