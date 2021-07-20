@@ -35,7 +35,7 @@ To set up the container for the first time:
      docker exec -it ares-docker_game_1 /bin/bash -l
 ```
 
-7. Within the shell, run these commands to set up the game using this command:
+7. Within the **docker shell**, run these commands to set up the game using this command:
  
 ```
     cd aresmush
@@ -51,7 +51,7 @@ To set up the container for the first time:
 
 After initial setup, here are the commands you'll want to use whenever you want to run the game.
 
-> Note: If you still have the ares container running from the initial setup, you can skip step 1.
+> Note: If you still have the ares container and shell running from the initial setup, you can skip step 1&2.
 
 1. Start the container and database:
  
@@ -59,19 +59,29 @@ After initial setup, here are the commands you'll want to use whenever you want 
     docker-compose up
 ```
 
-2. Launch a shell connected to the container and start the game:
- 
+2. Launch a shell connected to the container.
+
 ```
     docker exec -it ares-docker_game_1 /bin/bash -l
+```
+
+3.  Within the **docker shell**, run these commands to start the game:
+ 
+```
     cd aresmush
     bundle install
     bundle exec rake startares[disableproxy]
 ```
 
-3. Launch another shell and start the web portal:
+3. Launch another shell connected to the container:
  
 ```
     docker exec -it ares-docker_game_1 /bin/bash -l
+```
+
+5. In the second **docker shell**, start the web portal:
+
+```
     cd ares-webportal
     npm install --no-audit --no-fund
     ember serve
