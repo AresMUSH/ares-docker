@@ -21,7 +21,7 @@ To set up the container for the first time:
 
 4. Copy the `aresmush/install/game.distr` directory to create a new folder `aresmush/game`.
 
-5. From the ares-docker directory, start the container:
+5. From the ares-docker directory, start the container using this command:
 
 ```   
     docker-compose up
@@ -29,21 +29,22 @@ To set up the container for the first time:
 
 > Note: All commands can be run in Windows PowerShell or Mac Terminal.
 
-6. Launch a shell connected to the container:
+6. Launch a shell connected to the container using this command:
  
 ```
      docker exec -it ares-docker_game_1 /bin/bash -l
 ```
 
-7. Within the shell, run these commands to set up the game:
+7. Within the shell, run these commands to set up the game using this command:
  
 ```
     cd aresmush
-    bin/configure
+    bundle install
+    bundle exec rake configure $*
       - Use 127.0.0.1 for the host
       - Use default ports (this setup will not work with different ports)
       - Ignore the warning about the web portal directory not being found - that's OK.
-    bin/wipedb
+    bundle exec rake init
 ```
 
 ## Running the Game
@@ -63,7 +64,8 @@ After initial setup, here are the commands you'll want to use whenever you want 
 ```
     docker exec -it ares-docker_game_1 /bin/bash -l
     cd aresmush
-    bin/devstart
+    bundle install
+    bundle exec rake startares[disableproxy]
 ```
 
 3. Launch another shell and start the web portal:
@@ -71,7 +73,8 @@ After initial setup, here are the commands you'll want to use whenever you want 
 ```
     docker exec -it ares-docker_game_1 /bin/bash -l
     cd ares-webportal
-    bin/devportal
+    npm install --no-audit --no-fund
+    ember serve
 ```
 
 You should now be able to connect to your game on localhost:4201 and connect to the web portal at http://localhost:4200.
