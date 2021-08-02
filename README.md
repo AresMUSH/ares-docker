@@ -29,13 +29,13 @@ To set up the container for the first time:
 
 > Note: All commands can be run in Windows PowerShell or Mac Terminal.
 
-6. Launch a shell connected to the container using this command:
+6. In a new PowerShell/Terminal window, use this command to launch a shell connected to the container:
  
 ```
      docker exec -it ares-docker_game_1 /bin/bash -l
 ```
 
-7. Within the **docker shell**, run these commands to set up the game using this command:
+7. Within the **docker shell**, run these commands to set up the game:
  
 ```
     cd aresmush
@@ -59,7 +59,7 @@ After initial setup, here are the commands you'll want to use whenever you want 
     docker-compose up
 ```
 
-2. Launch a shell connected to the container.
+2. In a new PowerShell/Terminal window, launch a shell connected to the container:
 
 ```
     docker exec -it ares-docker_game_1 /bin/bash -l
@@ -73,13 +73,13 @@ After initial setup, here are the commands you'll want to use whenever you want 
     bundle exec rake startares[disableproxy]
 ```
 
-3. Launch another shell connected to the container:
+3. In a new PowerShell/Terminal window, launch another shell connected to the container:
  
 ```
     docker exec -it ares-docker_game_1 /bin/bash -l
 ```
 
-5. In the second **docker shell**, start the web portal:
+5. In the **second docker shell**, start the web portal:
 
 ```
     cd ares-webportal
