@@ -2,6 +2,11 @@ These are instructions for using the [Docker](https://www.docker.com) container 
 
 > **Note:** This setup is only intended for local development only, and is **not** suitable for a real production game.
 
+- [Initial Setup](#initial-setup)
+- [Running the Game](#running-the-game)
+- [Reloading Code](#reloading-code)
+- [Database](#database)
+
 ## Initial Setup
 
 To set up the container for the first time:
