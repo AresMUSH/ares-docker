@@ -5,3 +5,7 @@ These are instructions for using the [Docker](https://www.docker.com) container 
 ## Instructions
 
 See [Running Ares With Docker](https://aresmush.com/tutorials/code/docker.html).
+
+## License
+
+See [License](https://aresmush.com/license.html)
