@@ -114,17 +114,17 @@ RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 
 RUN \curl -sSL https://get.rvm.io | bash -s stable --ruby --autolibs=read-fail
-RUN source "/home/ares/.rvm/scripts/rvm" & rvm install ruby-2.6.3
-RUN source "/home/ares/.rvm/scripts/rvm" & rvm use ruby-2.6.3
+RUN source "/home/ares/.rvm/scripts/rvm" & rvm install ruby-3.1.2
+RUN source "/home/ares/.rvm/scripts/rvm" & rvm use ruby-3.1.2
 
 
 # #########################################################################################
 # Install Ruby version."
 
-RUN /bin/bash -lc "rvm install ruby-2.6.3"
-RUN /bin/bash -lc "rvm use ruby-2.6.3"
+RUN /bin/bash -lc "rvm install ruby-3.1.2"
+RUN /bin/bash -lc "rvm use ruby-3.1.2"
 RUN echo "source /home/ares/.rvm/scripts/rvm" >> "/home/ares/.profile"
-RUN echo "rvm use 2.6.3" >> "/home/ares/.profile"
+RUN echo "rvm use 3.1.2" >> "/home/ares/.profile"
 
 
 # #########################################################################################
