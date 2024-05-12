@@ -136,8 +136,10 @@ RUN /bin/bash -lc "gem install rake"
 # #########################################################################################
 # Installing Node for Ember."
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash\
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash\
     && . /home/ares/.nvm/nvm.sh \
-    && nvm install 12 \
-    && nvm use 12 \
-    && npm install -g ember-cli
+    && nvm install 18 \
+    && nvm use 18 \
+    && nvm alias default 18 \
+    && npm install -g ember-cli@4.12
+    
