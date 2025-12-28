@@ -3,3 +3,5 @@ dump.rdb
 aresmush/
 ares-webportal/
 redis_6379.pid
+instructions.txt
+nodesource_setup.sh

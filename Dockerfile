@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 SHELL ["/bin/bash", "-lc"]
 
 EXPOSE 4200
@@ -13,9 +13,7 @@ RUN apt-get -y update
 RUN apt-get -y install software-properties-common
 RUN apt-get -y install dialog apt-utils
 RUN apt-get -y -o Dpkg::Options::="--force-confnew" upgrade
-
-RUN add-apt-repository -y ppa:chris-lea/redis-server
-RUN apt-get -y update
+RUN apt-get -y install sudo
 
 # #########################################################################################
 # Installing SSL/HTTPS utils.
@@ -35,20 +33,30 @@ RUN apt-get install -y ruby-bundler
 RUN apt-get install -y ruby-dev
 
 # #########################################################################################
-# Redis DB and nginx for web server
+# Nginx for web server
 
 RUN apt-get install -y nginx
-RUN apt-get install -y redis-server
-
 
 # #########################################################################################
 # Dependency mgmt for ember cli"
 
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
-RUN apt-get install -y python
+RUN apt-get install -y curl
+RUN apt-get install -y python3
+
+#RUN curl -fsSL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
+#RUN chmod +x nodesource_setup.sh
+#RUN ./nodesource_setup.sh
+#RUN apt install nodejs -y
+
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+
+
 RUN npm install -g npm
 
+# #########################################################################################
+# Redis DB
+RUN apt-get install -y redis
 
 # #########################################################################################
 # Protect SSH from multiple failed logins."
@@ -66,11 +74,14 @@ RUN apt-get install -y unattended-upgrades
 RUN dpkg-reconfigure -f noninteractive unattended-upgrades
 
 # #########################################################################################
-# Create an ares user"
-# Ares user password will either be passed in as an arg, or we'll default it
+# Start the database server, then restart it to ensure that a dump file is immediately generated."
+RUN service redis-server start
+RUN service redis-server restart
 
-RUN RANDOMPW=$(openssl rand 1000 | strings | grep -io [[:alnum:]] | head -n 16 | tr -d '\n')
-RUN PASSWD=${1:-$RANDOMPW}
+# #########################################################################################
+# Create an ares user"
+
+RUN PASSWD="qfn7mqk9nxf.CWG2nau"
 RUN ENCRYPTEDPW=$(openssl passwd -1 "$PASSWD")
 RUN export ARES_USERNAME="ares"
 RUN adduser --disabled-password --gecos "" ares
@@ -87,6 +98,11 @@ RUN usermod -a -G sudo,www,redis ares
 RUN chown ares /var/www/html
 RUN chgrp www /etc/nginx/sites-available/default
 RUN chmod g+rwx /etc/nginx/sites-available/default
+
+# Needed for Ubuntu 21+ to allow web access to game dir
+
+RUN chmod a+x /home/ares
+
 
 # #########################################################################################
 # RVM needs some libs."
@@ -113,18 +129,17 @@ SHELL ["/bin/bash", "-lic"]
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 
-RUN \curl -sSL https://get.rvm.io | bash -s stable --ruby --autolibs=read-fail
-RUN source "/home/ares/.rvm/scripts/rvm" & rvm install ruby-3.1.2
-RUN source "/home/ares/.rvm/scripts/rvm" & rvm use ruby-3.1.2
+RUN \curl -sSL https://get.rvm.io | bash
+RUN /bin/bash -lc "source /home/ares/.rvm/scripts/rvm"
 
 
 # #########################################################################################
 # Install Ruby version."
 
-RUN /bin/bash -lc "rvm install ruby-3.1.2"
-RUN /bin/bash -lc "rvm use ruby-3.1.2"
+RUN /bin/bash -lc "rvm install ruby-3.3.6"
+RUN /bin/bash -lc "rvm use ruby-3.3.6"
+RUN echo "rvm use 3.3.6" >> "/home/ares/.profile"
 RUN echo "source /home/ares/.rvm/scripts/rvm" >> "/home/ares/.profile"
-RUN echo "rvm use 3.1.2" >> "/home/ares/.profile"
 
 
 # #########################################################################################
